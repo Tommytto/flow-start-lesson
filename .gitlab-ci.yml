@@ -1,6 +1,166 @@
 stages:
+  - pipelines
   - common
+  - static-code-analysis
+  - tests
+  - backend
+  - frontend
+  - validator-post
+  - tag
+
+pipelines:
+  stage: pipelines
+  script: /pub/ci/pipelines/pipelines.py
+  only:
+    - branches
+    - merge_requests
 
 ci-config-check:
   stage: common
   script: /pub/ci/ci_config/ci_config.py
+  only:
+    - branches
+    - merge_requests
+
+changelog-check:
+  stage: common
+  script: /pub/ci/changelog/changelog.py
+  allow_failure: false
+  only:
+    - branches
+    - merge_requests
+
+validator-pre-global:
+  stage: static-code-analysis
+  variables:
+    TYPE: pre-global
+  script: /pub/ci/validator/package.py
+  allow_failure: false
+  only:
+    - branches
+    - merge_requests
+
+validator-pre-js:
+  stage: static-code-analysis
+  variables:
+    TYPE: pre-js
+  script: /pub/ci/validator/package.py
+  allow_failure: false
+  only:
+    - branches
+    - merge_requests
+
+validator-pre-css:
+  stage: static-code-analysis
+  variables:
+    TYPE: pre-css
+  script: /pub/ci/validator/package.py
+  allow_failure: false
+  only:
+    - branches
+    - merge_requests
+
+validator-pre-jsx:
+  stage: static-code-analysis
+  variables:
+    TYPE: pre-jsx
+  script: /pub/ci/validator/package.py
+  allow_failure: false
+  only:
+    - branches
+    - merge_requests
+
+cpd-js:
+  stage: static-code-analysis
+  variables:
+    LANGUAGE: js
+  script: /pub/ci/cpd/package.py
+  allow_failure: true
+  only:
+    - branches
+    - merge_requests
+
+cpd-css:
+  stage: static-code-analysis
+  variables:
+    LANGUAGE: css
+  script: /pub/ci/cpd/package.py
+  allow_failure: true
+  only:
+    - branches
+    - merge_requests
+
+cpd-jsx:
+  stage: static-code-analysis
+  variables:
+    LANGUAGE: jsx
+  script: /pub/ci/cpd/package.py
+  allow_failure: true
+  only:
+    - branches
+    - merge_requests
+
+tests-exists-api:
+  stage: tests
+  script: /pub/ci/tests_exists_api/package.py
+  allow_failure: false
+  only:
+    - master
+    - merge_requests
+
+tests-check-skip:
+  stage: tests
+  script: /pub/ci/tests_check_skip/package.py
+  allow_failure: true
+  only:
+    - master
+    - merge_requests
+
+
+
+nodejs8:
+  stage: frontend
+  variables:
+    NODEJS_VERSION: 'nodejs8'
+  script: /pub/ci/frontend/package.py
+  allow_failure: false
+  only:
+    - branches
+    - tags
+    - merge_requests
+
+validator-post-js:
+  stage: validator-post
+  variables:
+    TYPE: post-js
+  script: /pub/ci/validator/package.py
+  allow_failure: true
+  only:
+    - master
+    - merge_requests
+
+validator-post-css:
+  stage: validator-post
+  variables:
+    TYPE: post-css
+  script: /pub/ci/validator/package.py
+  allow_failure: true
+  only:
+    - master
+    - merge_requests
+
+validator-post-jsx:
+  stage: validator-post
+  variables:
+    TYPE: post-jsx
+  script: /pub/ci/validator/package.py
+  allow_failure: true
+  only:
+    - master
+    - merge_requests
+
+tag:
+  stage: tag
+  script: /pub/ci/tag/package.py
+  only:
+    - master

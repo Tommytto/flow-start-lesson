@@ -54,3 +54,4 @@ function acceptVoid(value: void) {}
 acceptVoid(null);
 acceptVoid(undefined);
 acceptVoid();
+acceptVoid(4);

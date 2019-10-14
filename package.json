@@ -6,6 +6,7 @@
   "scripts": {
     "build": "babel src/ -d lib/",
     "flow": "flow",
+    "flow:coverage": "flow-coverage-report -i 'src/**/*.js'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

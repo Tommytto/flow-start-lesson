@@ -1,6 +1,9 @@
 //@flow
-function acceptTwo(value: 2) {}
-acceptTwo(3);
 
-function acceptColor(value: "blue" | "green") {}
+// Опишите тип который принимает только 2 и ничего больше
+function acceptTwo(value) {}
+acceptTwo(2);
+
+// Опишите тип который принимает либо синий, либо зеленый цвет
+function acceptColor(value) {}
 acceptColor("blue");

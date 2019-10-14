@@ -1,4 +1,7 @@
 //@flow
+
+//Изучите следующие примеры и исправьте ошибки
+
 const arr: Array<number> = [1, 2, 3];
 const arr2: number[] = [1, 2, 3];
 //may be
@@ -20,13 +23,16 @@ if (value !== undefined) {
   // number
 }
 
-//$ReadOnlyArray
-const someArr: $ReadOnlyArray<string> = ["hello"];
-someArr[1] = "world";
-
-const someOperation = (arr: Array<number | string>) => {
+const someOperation = <T: number | string>(arr: Array<T>) => {
   // Here we could do `arr.push('a string')`
 };
 
 const array3: Array<number> = [1];
-someOperation(array3); // Error!
+someOperation(array3);
+
+// Примедите примеры массивов с типами
+// 1. Массив строк
+// 2. Массив где один из элементов может быть undefined
+// 3. Массив которого может не быть
+// 4. Неизменяемый массив
+// 5. Массив строк и цифр

@@ -7,51 +7,50 @@
 // undefined (void in Flow types)
 // Symbols (new in ECMAScript 2015, not yet supported in Flow)
 
-//boolean
-let isOk: boolean;
+const isLoading: string = false;
 
-isOk = 5;
-isOk = true;
-const test = new Boolean(5);
+const isOpen: boolean = new Boolean(4);
 
 function start(canStart: boolean) {}
-start(0);
-start(!!0);
+
+// Укажи еще 3 примера вызова функции, обязательно разные
+start(true);
 start(false);
-start(Boolean(undefined));
+start(0);
 
-//string
-let name: string;
-name = 5;
-name = "John";
+// -------------
+const name: number = "John";
 
-function acceptString(str: string) {}
-acceptString(5);
-acceptString("Hello world");
-acceptString("1" + 5); // '15'
-acceptString("1" - 5); // -4
-acceptString("1" + {}); // '1[object Object]'
-acceptString("1" + []); // '1'
+function doSomething(str: string) {}
 
-//number
+// Укажи еще 3 примера вызова функции, обязательно разные
+doSomething("Hello world");
+
+
+// Внесите изменения в код, чтобы следующие примеры заработали. Существующий код нельзя удалять.
+doSomething("1" + {});
+doSomething("1" + []);
+
+// -------------
+
+const age: string = 18;
+
 function acceptNumber(value: number) {}
 
+// Укажите еще 2 примеры использования, не используя цифра
 acceptNumber(1);
 acceptNumber(1.11);
+
+// Внесите изменения в код, чтобы следующий примеры перестали быть ошибочными. Существующий код нельзя удалять.
 acceptNumber(false);
 acceptNumber(null);
-acceptNumber(NaN);
 acceptNumber(undefined);
-acceptNumber(Infinity);
 
-//null, void
+// ----------
 function acceptNull(value: null) {}
 acceptNull(null);
-acceptNull(undefined);
 
-// undefined === void
-function acceptVoid(value: void) {}
-acceptVoid(null);
-acceptVoid(undefined);
-acceptVoid();
-acceptVoid(4);
+// Исправьте тип, чтобы следующий пример заработал без ошибок. Слово undefined использовать нельзя
+function acceptUndefined(value: null) {}
+
+acceptUndefined(undefined);

@@ -1,13 +1,9 @@
 //@flow
-//input all
-//actions only with refinements
-function setSomething(value: mixed) {
-    if (typeof value === 'string') {
-        const a = value + 'hello'
-    } else if (Array.isArray(value)) {
-        const a = value.map((item) => item)
-    }
 
+// Исправьте ошибки, код можно менять только внутри функции.
+function setSomething(value: mixed) {
+    const a = value + 'hello'
+    const a = value.map((item) => item)
     delete value.someProp;
 }
 

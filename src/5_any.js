@@ -7,3 +7,6 @@ function acceptAny(value: any) {
     value + 5;
     value.helloWorld
 }
+
+// Почему стоит избегать any?
+// Где any можем пригодиться?

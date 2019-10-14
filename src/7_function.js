@@ -1,18 +1,5 @@
 //@flow
 
-// 1. input and output
-// 2. using inference, output type is often optional
-// 3. syntax for arrow functions
-// -- rest operator
-// 4. function types (as parameter for example)
-// 5. function return
-// 6. function return Promise
-// 7. function this
-// 8. predicate functions
-// 9. chained checks functions
-// 10. callable objects
-// 11. Function type
-
 function double(value: number): number {
   return value * 2;
 }
@@ -22,23 +9,27 @@ function concat(a, b) {
 }
 
 concat("hello", "it's me");
-concat(true, {});
+// concat(true, {});
 
 // better set types for all
 concat(1, 2);
 
+// Опишите словами эту функцию вместе с типами
 const arrowFunc = (value: number, ...rest: Array<mixed>): void => {};
 
+// Измените код, чтобы исправить ошибку
 function acceptFunc(callback: string => void) {
   callback(5);
 }
 
-function voidOrBool(): boolean {
+// Измените возвращаемый тип, чтобы избавиться от ошибки
+function randomNotZero(): boolean {
   if (Math.random()) {
     return true;
   }
 }
 
+// Измените возвращаемый тип, чтобы избавиться от ошибки
 function setTimer(time): string {
   return new Promise(resolve => {
     resolve("Success");
@@ -49,9 +40,7 @@ function method() {
   return this;
 }
 
-var num: number = method.call(42);
-// $ExpectError
-var str: string = method.call(42);
+var num: number = method.call("42");
 
 function concatStrings(a: ?string, b: ?string): string {
   if (a && b) {
@@ -60,21 +49,7 @@ function concatStrings(a: ?string, b: ?string): string {
   return "";
 }
 
-//predicate body only as expression, no variables inside
-function checkTruthy(a, b): boolean %checks {
-  // const hello = 'hello';
-  return Boolean(a) && Boolean(b);
-  // return Boolean(a && b);
-  // return !!a && !!b;
-}
-
-function concatStrings2(a: ?string, b: ?string): string {
-  if (checkTruthy(a, b)) {
-    return a + b;
-  }
-  return "";
-}
-
+// Проанализируйте следующий код и скажите для чего необходим оператор %checks
 function isString(val): %checks {
   return typeof val === "string";
 }
@@ -96,28 +71,9 @@ function testFunc(val): string | number {
   }
 }
 
+// Допишите 4 примера. 2 с ошибкой и 2 без ошибки
 testFunc(4);
 testFunc("hello");
 testFunc([]);
-testFunc({ hello: "world" });
 
-// callable object
-type CallableObj = {
-  (number, number): number,
-  bar: string
-};
-
-function add(x, y) {
-  return x + y;
-}
-
-// $ExpectError
-(add: CallableObj);
-
-add.bar = "hello world";
-
-(add: CallableObj);
-
-const f: Function = (a, b, c) => {
-    return a + b + c.delete;
-}
+// Напишите 3 разные функции и типизируйте их. Обязательно сделать одну из них с необязательными параметрами

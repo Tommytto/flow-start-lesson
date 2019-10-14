@@ -17,7 +17,7 @@ let letWithNoType = 5;
 if (Math.random()) {letWithNoType = "test"}
 if (Math.random()) {letWithNoType = true}
 
-const againConst: number | string | boolean = letWithNoType;
+const againConst: number = letWithNoType;
 
 //can't calculate
 let foo = 42;
@@ -26,5 +26,5 @@ function mutate() {
   foo = true;
   foo = "hello";
 }
-
+mutate();
 let isString: string = foo; 

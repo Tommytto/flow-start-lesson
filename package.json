@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "babel src/ -d lib/",
-    "flow": "flow",
-    "flow:coverage": "flow-coverage-report -i 'src/**/*.js'",
+    "flow": "flow src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
